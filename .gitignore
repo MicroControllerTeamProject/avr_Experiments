@@ -30,3 +30,8 @@
 *.exe
 *.out
 *.app
+/.vs
+/function_pointer/Debug
+/function_pointer/__vm
+/function_pointer/function_pointer.vcxproj.filters
+/function_pointer/function_pointer.vcxproj.user
