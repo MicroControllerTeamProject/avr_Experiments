@@ -1,0 +1,4 @@
+﻿Compiling 'function_pointer' for 'ATtiny85 (ATtiny25/45/85)'
+Program size: 1,888 bytes (used 23% of a 8,192 byte maximum) (2.95 secs)
+Minimum Memory Usage: 189 bytes (37% of a 512 byte maximum)
+ 
