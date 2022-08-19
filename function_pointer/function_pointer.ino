@@ -10,7 +10,9 @@ SoftwareSerial sf(99, 0);
 
 int f(int a, int b,int (*mathOper)(int a,int b))
 {
-	return (*mathOper)(a, b);
+	int result = (*mathOper)(a, b);
+	//execute other functions with result
+	return result;
 }
 
 //int sum(int a, int b)
@@ -27,7 +29,8 @@ int f(int a, int b,int (*mathOper)(int a,int b))
 void setup() {
 	sf.begin(9600);
 	mathOperations *mod = new mathOperations();
-	mod->key();
+	sf.print("key istance :"); sf.println(mod->key());
+	sf.print("sum istance :"); sf.println(mod->sum(1,2));
 	sf.print("sum :"); sf.println(f(1,2, mathOperations::sum));
 	sf.print("multi :"); sf.println(f(1, 2, mathOperations::add));
 }

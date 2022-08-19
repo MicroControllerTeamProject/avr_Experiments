@@ -35,3 +35,7 @@
 /function_pointer/__vm
 /function_pointer/function_pointer.vcxproj.filters
 /function_pointer/function_pointer.vcxproj.user
+/pointerAsArray/Debug
+/pointerAsArray/__vm
+/pointerAsArray/pointerAsArray.vcxproj.user
+/pointerAsArray/pointerAsArray.vcxproj.filters
