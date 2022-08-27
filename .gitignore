@@ -39,3 +39,9 @@
 /pointerAsArray/__vm
 /pointerAsArray/pointerAsArray.vcxproj.user
 /pointerAsArray/pointerAsArray.vcxproj.filters
+/function_pointer/Release
+/pointerAsArray/Release
+/softSerialInFunction/Debug
+/softSerialInFunction/__vm
+/softSerialInFunction/softSerialInFunction.vcxproj.user
+/softSerialInFunction/softSerialInFunction.vcxproj.filters

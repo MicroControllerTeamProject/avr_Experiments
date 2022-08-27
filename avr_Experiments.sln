@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "function_pointer", "functio
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pointerAsArray", "pointerAsArray\pointerAsArray.vcxproj", "{31D776DF-16AB-42DB-9207-BED20C61B428}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "softSerialInFunction", "softSerialInFunction\softSerialInFunction.vcxproj", "{C4808A86-E47A-41D4-8B0B-2F30F83C2C33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -21,6 +23,10 @@ Global
 		{31D776DF-16AB-42DB-9207-BED20C61B428}.Debug|x86.Build.0 = Debug|Win32
 		{31D776DF-16AB-42DB-9207-BED20C61B428}.Release|x86.ActiveCfg = Release|Win32
 		{31D776DF-16AB-42DB-9207-BED20C61B428}.Release|x86.Build.0 = Release|Win32
+		{C4808A86-E47A-41D4-8B0B-2F30F83C2C33}.Debug|x86.ActiveCfg = Debug|Win32
+		{C4808A86-E47A-41D4-8B0B-2F30F83C2C33}.Debug|x86.Build.0 = Debug|Win32
+		{C4808A86-E47A-41D4-8B0B-2F30F83C2C33}.Release|x86.ActiveCfg = Release|Win32
+		{C4808A86-E47A-41D4-8B0B-2F30F83C2C33}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
