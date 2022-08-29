@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pointerAsArray", "pointerAs
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "softSerialInFunction", "softSerialInFunction\softSerialInFunction.vcxproj", "{C4808A86-E47A-41D4-8B0B-2F30F83C2C33}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "memoryTests", "memoryTests\memoryTests.vcxproj", "{B2BA413D-BEC0-49AA-A146-45B5793E7469}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -27,6 +29,10 @@ Global
 		{C4808A86-E47A-41D4-8B0B-2F30F83C2C33}.Debug|x86.Build.0 = Debug|Win32
 		{C4808A86-E47A-41D4-8B0B-2F30F83C2C33}.Release|x86.ActiveCfg = Release|Win32
 		{C4808A86-E47A-41D4-8B0B-2F30F83C2C33}.Release|x86.Build.0 = Release|Win32
+		{B2BA413D-BEC0-49AA-A146-45B5793E7469}.Debug|x86.ActiveCfg = Debug|Win32
+		{B2BA413D-BEC0-49AA-A146-45B5793E7469}.Debug|x86.Build.0 = Debug|Win32
+		{B2BA413D-BEC0-49AA-A146-45B5793E7469}.Release|x86.ActiveCfg = Release|Win32
+		{B2BA413D-BEC0-49AA-A146-45B5793E7469}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

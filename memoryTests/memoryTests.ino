@@ -1,6 +1,6 @@
 /*
- Name:		pointerAsArray.ino
- Created:	8/12/2022 2:46:09 PM
+ Name:		memoryTests.ino
+ Created:	8/29/2022 1:54:32 PM
  Author:	luigi.santagada
 */
 
@@ -12,90 +12,44 @@ extern int __data_start;
 #endif
 
 extern int __data_end;
-//extern int __bss_start;
-//extern int __bss_end;
+extern int __bss_start;
+extern int __bss_end;
 extern int __heap_start;
 extern int __brkval;
 int temp;
 
-
 SoftwareSerial sf(99, 0);
+
 // the setup function runs once when you press reset or power the board
 void setup() {
 	sf.begin(9600);
+	sf.println(F(""));
 	sf.println(F("RESTART"));
+}
 
+int* s;
+// the loop function runs over and over again until power down or reset
+void loop() {
+	/*k[0] = 0;*/
+	/*s = (int*)malloc(sizeof(int));
+	*s = 10;
+	sf.print(F("malloc : ")); sf.println((int)s);
+	free(s);*/
+	readMemoryAtRunTime();
+	test();
+	readMemoryAtRunTime();
+	delay(1000);
+}
 
-
+void test()
+{
+	int k[40] = {};
+	k[0] = 0;
 }
 
 int freeRam() {
-
 	int v;
 	return (int)&v - (__brkval == 0 ? (int)&__heap_start : (int)__brkval);
-}
-// the loop function runs over and over again until power down or reset
-
-int* s;
-int* g;
-
-int ciclo = 0;
-void loop() {
-	sf.println(F("giro"));
-	
-	if (freeRam() >= 150)
-		/*if (!exit1)*/
-	{
-		sf.print(F("mem before :------------ ")); //sf.println(freeRam());
-		readMemoryAtRunTime();
-		int k[80];
-		for (int i = 0; i < 80; i++)
-		{
-			k[i] = i;
-		}
-		
-		sf.print(F("mem after :-------------- "));// sf.println(freeRam());
-		readMemoryAtRunTime();
-
-		delay(10000);
-
-		s = (int*)malloc(sizeof(int));
-		sf.print(F("mem : ")); sf.println((int)s, HEX);
-		if (s != NULL)
-		{
-			*s = ciclo;
-			sf.print(F("add : ")); sf.println(*s);
-			ciclo++;
-
-		/*	g = (int*)malloc(1 * sizeof(int));
-			if (g != NULL)
-			{
-				*g = 19;
-			}*/
-			
-		}
-	}
-	else
-	{
-	/*	int k[80];
-		for (int i = 0; i < 80; i++)
-		{
-			k[i] = i;
-			sf.println(k[i]);
-		}*/
-		
-		sf.print(F("p: ")); sf.println(*(s - 0));
-		free(s);
-		for (int i = 70; i >= 0; i-=2)
-		{
-			sf.println((int)(s-i),HEX);
-			free(s - i);
-		}
-		ciclo = 0;
-		delay(2000);
-	}
-
-	delay(100);
 }
 
 void readMemoryAtRunTime()
@@ -108,7 +62,7 @@ void readMemoryAtRunTime()
 #endif
 
 #ifndef RAMSTART
-	serialPrint("SRAM and .data space start: ", (int)&__data_start);
+	serialPrint(F("SRAM and .data space start: "), (int)&__data_start);
 #else
 	serialPrint(F("SRAM and .data space start: "), RAMSTART);
 #endif
@@ -119,13 +73,14 @@ void readMemoryAtRunTime()
 	serialPrint(F("STACK start: "), temp);
 	serialPrint(F("STACK and SRAM end: "), RAMEND);
 	serialPrint(F("Free memory at the moment: "), tempRam);
-	
+	sf.println(F("----------------------------------------------"));
 }
 
-//print function
 void serialPrint(String tempString, int tempData) {
 	sf.print(tempString);
 	sf.print(tempData, DEC);
 	sf.print(" $");
 	sf.println(tempData, HEX);
 }
+
+

@@ -45,3 +45,7 @@
 /softSerialInFunction/__vm
 /softSerialInFunction/softSerialInFunction.vcxproj.user
 /softSerialInFunction/softSerialInFunction.vcxproj.filters
+/memoryTests/Debug
+/memoryTests/__vm
+/memoryTests/memoryTests.vcxproj.user
+/memoryTests/memoryTests.vcxproj.filters
