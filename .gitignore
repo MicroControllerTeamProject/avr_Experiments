@@ -49,3 +49,4 @@
 /memoryTests/__vm
 /memoryTests/memoryTests.vcxproj.user
 /memoryTests/memoryTests.vcxproj.filters
+/memoryTests/Release

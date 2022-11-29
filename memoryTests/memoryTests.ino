@@ -4,7 +4,7 @@
  Author:	luigi.santagada
 */
 
-#include <SoftwareSerial.h>
+//#include <SoftwareSerial.h>
 
 //for some MCUs (i.e. the ATmega2560) there's no definition for RAMSTART
 #ifndef RAMSTART
@@ -18,34 +18,129 @@ extern int __heap_start;
 extern int __brkval;
 int temp;
 
-SoftwareSerial sf(99, 0);
 
+struct Person
+{
+	int age;
+	int year;
+	char* name;
+	char* surname;
+};
+
+Person* person2;
+int numberOfObjects = 5;
+
+int count = 0;
+
+int startAddress = 0;
 // the setup function runs once when you press reset or power the board
 void setup() {
-	sf.begin(9600);
-	sf.println(F(""));
-	sf.println(F("RESTART"));
+	Serial.begin(9600);
+	Serial.println(F(""));
+	Serial.println(F("RESTART"));
+	person2 = (Person*)calloc(numberOfObjects, sizeof(Person));
+	startAddress = (int)person2;
 }
 
-int* s;
+int* t1 = new int(50);
+int* t2 = new int(50);
+int* t3 = new int(50);
+int* t4 = new int(50);
+int* t5 = new int(50);
+
 // the loop function runs over and over again until power down or reset
 void loop() {
-	/*k[0] = 0;*/
-	/*s = (int*)malloc(sizeof(int));
-	*s = 10;
-	sf.print(F("malloc : ")); sf.println((int)s);
-	free(s);*/
-	readMemoryAtRunTime();
-	test();
-	readMemoryAtRunTime();
-	delay(1000);
+
+	Serial.print(F("Object ....................................... : ")); Serial.println(count);
+
+	if (person2 == NULL)
+	{
+		Serial.println("no memory ");
+		delay(10000);
+		return;
+	}
+
+	*person2 = Person();
+
+	person2->age = 52 + count;
+
+	person2->year = 1970;
+
+	person2->name = "Luigi";
+
+	person2->surname = "Santagada";
+
+	Serial.print(F("person with age ")); Serial.print(person2->age); Serial.print(person2->surname); Serial.print(F(" address: ")); Serial.println((int)person2);
+
+	if (count <= (numberOfObjects - 2)) { person2++; }
+
+	//readMemoryAtRunTime();
+
+	if (count == (numberOfObjects - 1))
+	{
+		count = 0;
+
+		Serial.println(F("stop"));
+
+		int tempRam = freeRam();
+
+		Serial.print(F("Free memory at the moment: ")); Serial.println(tempRam);
+
+		free((Person*)startAddress);
+
+		numberOfObjects = 1;
+
+		delay(5000);
+
+		/*for (int i = 0; i < numberOfObjects; i++)
+		{
+			free((Person*)((int)person2 - (sizeof(Person) * i)));
+			Serial.print(F("free address ")); Serial.println((int)person2 - (sizeof(Person) * i));
+		}*/
+
+		//realloc(person2, 10);
+
+		person2 = (Person*)calloc(numberOfObjects, sizeof(Person));
+
+		startAddress = (int)person2;
+
+		delay(1000);
+	}
+	else
+	{
+		count++;
+	}
+
+	
+	
 }
 
-void test()
-{
-	int k[40] = {};
-	k[0] = 0;
-}
+
+
+
+//Person* person1;
+
+//void createPerson()
+//{
+//
+//	person2 = new Person();
+//
+//	person2->name = F("Luigi....................................................................");
+//
+//	Serial.println((int)person2);
+//
+//	//person2 = (Person*)malloc(sizeof(Person));
+//
+//	//person2 = new Person();
+//
+//	//person2->name = F("Luigi....................................................................");
+//
+//	//Serial.println((int)person2);
+//
+//	/*delete((Person*)460);
+//	delete((Person*)558);*/
+//}
+
 
 int freeRam() {
 	int v;
@@ -73,14 +168,14 @@ void readMemoryAtRunTime()
 	serialPrint(F("STACK start: "), temp);
 	serialPrint(F("STACK and SRAM end: "), RAMEND);
 	serialPrint(F("Free memory at the moment: "), tempRam);
-	sf.println(F("----------------------------------------------"));
+	Serial.println(F("----------------------------------------------"));
 }
 
 void serialPrint(String tempString, int tempData) {
-	sf.print(tempString);
-	sf.print(tempData, DEC);
-	sf.print(" $");
-	sf.println(tempData, HEX);
+	Serial.print(tempString);
+	Serial.print(tempData, DEC);
+	Serial.print(" $");
+	Serial.println(tempData, HEX);
 }
 
 
