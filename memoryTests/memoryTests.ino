@@ -88,7 +88,7 @@ void loop() {
 
 		free((Person*)startAddress);
 
-		numberOfObjects = 1;
+		numberOfObjects = 5;
 
 		delay(5000);
 
@@ -103,6 +103,8 @@ void loop() {
 		person2 = (Person*)calloc(numberOfObjects, sizeof(Person));
 
 		startAddress = (int)person2;
+
+	//https://www.geeksforgeeks.org/g-fact-66/
 
 		delay(1000);
 	}
