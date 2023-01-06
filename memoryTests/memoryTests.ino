@@ -42,15 +42,8 @@ void setup() {
 	startAddress = (int)person2;
 }
 
-int* t1 = new int(50);
-int* t2 = new int(50);
-int* t3 = new int(50);
-int* t4 = new int(50);
-int* t5 = new int(50);
-
-// the loop function runs over and over again until power down or reset
-void loop() {
-
+void createAndDeletePersons()
+{
 	Serial.print(F("Object ....................................... : ")); Serial.println(count);
 
 	if (person2 == NULL)
@@ -104,7 +97,7 @@ void loop() {
 
 		startAddress = (int)person2;
 
-	//https://www.geeksforgeeks.org/g-fact-66/
+		//https://www.geeksforgeeks.org/g-fact-66/
 
 		delay(1000);
 	}
@@ -112,9 +105,10 @@ void loop() {
 	{
 		count++;
 	}
-
-	
-	
+}
+// the loop function runs over and over again until power down or reset
+void loop() {
+	createAndDeletePersons();
 }
 
 

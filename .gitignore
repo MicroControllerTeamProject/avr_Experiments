@@ -50,3 +50,7 @@
 /memoryTests/memoryTests.vcxproj.user
 /memoryTests/memoryTests.vcxproj.filters
 /memoryTests/Release
+/objectsInHeapMemoryManagment/Release
+/objectsInHeapMemoryManagment/x64/Debug
+/objectsInHeapMemoryManagment/__vm
+/pointerListVariable/__vm

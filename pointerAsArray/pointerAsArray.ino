@@ -19,15 +19,30 @@ extern int __brkval;
 int temp;
 
 
-SoftwareSerial sf(99, 0);
+//SoftwareSerial Serial(99, 0);
 // the setup function runs once when you press reset or power the board
 void setup() {
-	sf.begin(9600);
-	sf.println(F("RESTART"));
-
-
-
+	Serial.begin(9600);
+	Serial.println(F("---------------------------------RESTART"));
+	readMemoryAtRunTime();
 }
+
+int test(char* &i)
+{
+	String h = "x-------------------------------------------------------------------------------------------------x";
+	i = (char*)calloc(h.length(), sizeof(char));	
+	Serial.print("Primo : "); Serial.println((int)i);
+	int y = (int)i;
+	h.toCharArray(i, h.length() + 1, 0);
+	Serial.print("Secondo : "); Serial.println((int)i);
+	Serial.println("---------------------------------In function");
+	readMemoryAtRunTime();
+	/*x = i;*/
+	/*free((char*)y);*/
+	return y;
+}
+
+
 
 int freeRam() {
 
@@ -41,61 +56,69 @@ int* g;
 
 int ciclo = 0;
 void loop() {
-	sf.println(F("giro"));
-	
-	if (freeRam() >= 150)
-		/*if (!exit1)*/
-	{
-		sf.print(F("mem before :------------ ")); //sf.println(freeRam());
-		readMemoryAtRunTime();
-		int k[80];
-		for (int i = 0; i < 80; i++)
-		{
-			k[i] = i;
-		}
-		
-		sf.print(F("mem after :-------------- "));// sf.println(freeRam());
-		readMemoryAtRunTime();
+	char* i;
+	int u = test(i);
+	Serial.println(i);
+	/*free((char*)u);*/
+	free(i);
+	Serial.println("----------------------------------------In cicle");
+	readMemoryAtRunTime();
+	return;
+	//Serial.println(F("giro"));
+	//
+	//if (freeRam() >= 150)
+	//	/*if (!exit1)*/
+	//{
+	//	Serial.print(F("mem before :------------ ")); //sf.println(freeRam());
+	//	readMemoryAtRunTime();
+	//	int k[80];
+	//	for (int i = 0; i < 80; i++)
+	//	{
+	//		k[i] = i;
+	//	}
+	//	
+	//	Serial.print(F("mem after :-------------- "));// sf.println(freeRam());
+	//	readMemoryAtRunTime();
 
-		delay(10000);
+	//	delay(10000);
 
-		s = (int*)malloc(sizeof(int));
-		sf.print(F("mem : ")); sf.println((int)s, HEX);
-		if (s != NULL)
-		{
-			*s = ciclo;
-			sf.print(F("add : ")); sf.println(*s);
-			ciclo++;
+	//	s = (int*)malloc(sizeof(int));
+	//	Serial.print(F("mem : ")); Serial.println((int)s, HEX);
+	//	if (s != NULL)
+	//	{
+	//		*s = ciclo;
+	//		Serial.print(F("add : ")); Serial.println(*s);
+	//		ciclo++;
 
-		/*	g = (int*)malloc(1 * sizeof(int));
-			if (g != NULL)
-			{
-				*g = 19;
-			}*/
-			
-		}
-	}
-	else
-	{
-	/*	int k[80];
-		for (int i = 0; i < 80; i++)
-		{
-			k[i] = i;
-			sf.println(k[i]);
-		}*/
-		
-		sf.print(F("p: ")); sf.println(*(s - 0));
-		free(s);
-		for (int i = 70; i >= 0; i-=2)
-		{
-			sf.println((int)(s-i),HEX);
-			free(s - i);
-		}
-		ciclo = 0;
-		delay(2000);
-	}
+	//	/*	g = (int*)malloc(1 * sizeof(int));
+	//		if (g != NULL)
+	//		{
+	//			*g = 19;
+	//		}*/
+	//		
+	//	}
+	//}
+	//else
+	//{
+	///*	int k[80];
+	//	for (int i = 0; i < 80; i++)
+	//	{
+	//		k[i] = i;
+	//		sf.println(k[i]);
+	//	}*/
+	//	
+	//	Serial.print(F("p: ")); Serial.println(*(s - 0));
+	//	free(s);
+	//	for (int i = 70; i >= 0; i-=2)
+	//	{
+	//		Serial.println((int)(s-i),HEX);
+	//		free(s - i);
+	//	}
+	//	ciclo = 0;
+	//	delay(2000);
+	//}
 
-	delay(100);
+	//delay(100);
 }
 
 void readMemoryAtRunTime()
@@ -119,13 +142,13 @@ void readMemoryAtRunTime()
 	serialPrint(F("STACK start: "), temp);
 	serialPrint(F("STACK and SRAM end: "), RAMEND);
 	serialPrint(F("Free memory at the moment: "), tempRam);
-	
+
 }
 
 //print function
 void serialPrint(String tempString, int tempData) {
-	sf.print(tempString);
-	sf.print(tempData, DEC);
-	sf.print(" $");
-	sf.println(tempData, HEX);
+	Serial.print(tempString);
+	Serial.print(tempData, DEC);
+	Serial.print(" $");
+	Serial.println(tempData, HEX);
 }

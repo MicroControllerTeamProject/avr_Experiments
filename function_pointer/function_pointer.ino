@@ -6,7 +6,7 @@
 #include <SoftwareSerial.h>
 #include "mathOperations.h"
 
-SoftwareSerial sf(99, 0);
+SoftwareSerial Serial(99, 0);
 
 int f(int a, int b,int (*mathOper)(int a,int b))
 {
@@ -27,12 +27,12 @@ int f(int a, int b,int (*mathOper)(int a,int b))
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-	sf.begin(9600);
+	Serial.begin(9600);
 	mathOperations *mod = new mathOperations();
-	sf.print("key istance :"); sf.println(mod->key());
-	sf.print("sum istance :"); sf.println(mod->sum(1,2));
-	sf.print("sum :"); sf.println(f(1,2, mathOperations::sum));
-	sf.print("multi :"); sf.println(f(1, 2, mathOperations::add));
+	Serial.print("key istance :"); Serial.println(mod->key());
+	Serial.print("sum istance :"); Serial.println(mod->sum(1,2));
+	Serial.print("sum :"); Serial.println(f(1,2, mathOperations::sum));
+	Serial.print("multi :"); Serial.println(f(1, 2, mathOperations::add));
 }
 
 // the loop function runs over and over again until power down or reset
